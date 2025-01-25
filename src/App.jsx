@@ -5,11 +5,9 @@ import Signin from './pages/Signin'
 import SignUp from './pages/Signup'
 import Header from './Component/Header'
 import './index.css'
-import User from "./pages/User"
-import Teacher from "./pages/Teacher"
-
-
-
+import Admin from "./pages/Admin"
+import Reception from "./pages/Reception"
+import Department from "./pages/Department"
 
 
 function App() {
@@ -27,8 +25,10 @@ function App() {
       <Route path='/' element={<Home/>} />
       <Route path='/Signin' element={<Signin/>} />
       <Route path='/Signup' element={<SignUp/>} />
-      <Route path='/User' element={<User/>} />
-      <Route path='/Teacher' element={<Teacher/>} />
+      <Route path='/Admin' element={<Admin/>} />
+      <Route path='/Reception' element={<Reception/>} />
+      <Route path='/Department' element={<Department/>} />
+
 
 
 
