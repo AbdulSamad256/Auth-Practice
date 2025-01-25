@@ -45,8 +45,11 @@ function Signin() {
   };
 
   return (
+
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <Card className="p-6 w-full max-w-md shadow-md">
+      <h1 className="text-center">Email:Login@gmail.com</h1>
+      <h1 className="text-center">Password:abc@12569</h1>
         <h3 className="text-center text-lg font-semibold mb-4">
           Welcome Back
         </h3>

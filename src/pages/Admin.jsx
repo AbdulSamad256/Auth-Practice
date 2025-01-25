@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Table, Card, Statistic } from "antd";
+import { Input, Table, Card, Statistic, Row, Col, Tooltip, Button } from "antd";
 import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,7 +7,7 @@ import {
   LinearScale,
   BarElement,
   ArcElement,
-  Tooltip,
+  Tooltip as ChartTooltip,
   Legend,
 } from "chart.js";
 import {
@@ -17,7 +17,7 @@ import {
 } from "@ant-design/icons";
 
 // Register necessary Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, ChartTooltip, Legend);
 
 const Admin = () => {
   // Sample data for charts
@@ -116,15 +116,15 @@ const Admin = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-8 bg-gray-100 min-h-screen">
       {/* Header */}
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-center text-blue-800">Admin Dashboard</h1>
+      <header className="mb-10">
+        <h1 className="text-4xl font-bold text-center text-blue-800">Admin Dashboard</h1>
       </header>
 
       {/* Insights Section */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card className="shadow-lg" bordered={false}>
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <Card className="shadow-lg rounded-lg transition-all transform hover:scale-105" bordered={false}>
           <Statistic
             title="Total Visitors"
             value={500}
@@ -132,7 +132,7 @@ const Admin = () => {
             prefix={<TeamOutlined />}
           />
         </Card>
-        <Card className="shadow-lg" bordered={false}>
+        <Card className="shadow-lg rounded-lg transition-all transform hover:scale-105" bordered={false}>
           <Statistic
             title="New Beneficiaries"
             value={120}
@@ -140,7 +140,7 @@ const Admin = () => {
             prefix={<UserAddOutlined />}
           />
         </Card>
-        <Card className="shadow-lg" bordered={false}>
+        <Card className="shadow-lg rounded-lg transition-all transform hover:scale-105" bordered={false}>
           <Statistic
             title="Returning Beneficiaries"
             value={380}
@@ -151,52 +151,67 @@ const Admin = () => {
       </section>
 
       {/* Charts Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <Card className="shadow-lg" bordered={false}>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <Card className="shadow-lg rounded-lg transition-all transform hover:scale-105" bordered={false}>
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Daily Activity</h3>
           <Bar data={barData} />
         </Card>
-        <Card className="shadow-lg" bordered={false}>
+        <Card className="shadow-lg rounded-lg transition-all transform hover:scale-105" bordered={false}>
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Department Contributions</h3>
           <Pie data={pieData} />
         </Card>
       </section>
 
       {/* Search Records Section */}
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold text-blue-800 mb-4">Search Records</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-          <Input
-            placeholder="Search by CNIC"
-            prefix={<SearchOutlined />}
-            className="shadow-lg"
-            onChange={(e) => handleSearch("cnic", e.target.value)}
-          />
-          <Input
-            placeholder="Search by Name"
-            prefix={<SearchOutlined />}
-            className="shadow-lg"
-            onChange={(e) => handleSearch("name", e.target.value)}
-          />
-          <Input
-            placeholder="Search by Phone Number"
-            prefix={<SearchOutlined />}
-            className="shadow-lg"
-            onChange={(e) => handleSearch("phone", e.target.value)}
-          />
-          <Input
-            placeholder="Search by Department"
-            prefix={<SearchOutlined />}
-            className="shadow-lg"
-            onChange={(e) => handleSearch("department", e.target.value)}
-          />
-        </div>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-blue-800 mb-6">Search Records</h2>
+        <Row gutter={[16, 16]} className="mb-6">
+          <Col xs={24} md={6}>
+            <Input
+              placeholder="Search by CNIC"
+              prefix={<SearchOutlined />}
+              className="shadow-lg"
+              onChange={(e) => handleSearch("cnic", e.target.value)}
+            />
+          </Col>
+          <Col xs={24} md={6}>
+            <Input
+              placeholder="Search by Name"
+              prefix={<SearchOutlined />}
+              className="shadow-lg"
+              onChange={(e) => handleSearch("name", e.target.value)}
+            />
+          </Col>
+          <Col xs={24} md={6}>
+            <Input
+              placeholder="Search by Phone Number"
+              prefix={<SearchOutlined />}
+              className="shadow-lg"
+              onChange={(e) => handleSearch("phone", e.target.value)}
+            />
+          </Col>
+          <Col xs={24} md={6}>
+            <Input
+              placeholder="Search by Department"
+              prefix={<SearchOutlined />}
+              className="shadow-lg"
+              onChange={(e) => handleSearch("department", e.target.value)}
+            />
+          </Col>
+        </Row>
 
-        <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          pagination={{ pageSize: 5 }}
+          className="shadow-lg rounded-lg"
+          bordered
+          size="middle"
+        />
       </section>
 
       {/* Footer */}
-      <footer className="text-center text-gray-600 mt-8">
+      <footer className="text-center text-gray-600 mt-10">
         <p>&copy; 2025 Admin Dashboard. All rights reserved.</p>
       </footer>
     </div>

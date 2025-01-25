@@ -185,7 +185,9 @@ const Reception = () => {
           Register Beneficiary
         </button>
       </form>
+      
     </div>
+
   );
 };
 
